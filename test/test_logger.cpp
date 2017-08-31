@@ -502,33 +502,3 @@ TEST(MultiThread, FootprintPerformance)
     EXPECT_TRUE(true);
     LOG_CONFIG_FILTER(trace);
 }
-
-// TEST(MultiThread, OfstreamPerformance)
-// {
-//     auto thread_count = thread::hardware_concurrency();
-//     int num_lines = 1000000;
-//     atomic<int> counter = { 0 };
-//     vector<thread> threads(thread_count);
-//     /* disable timestamp */
-//     std::mutex mtx;
-//     std::ofstream ofs("ofstream_log", std::ios::out | std::ios::app);
-//     LOG_CONFIG_TIMESTAMP(false);
-//     LOG_CONFIG_FORCE_FLUSH(false);
-//     for (auto &t : threads)
-//         t = thread([&]() {
-//         while (true)
-//         {
-//             std::lock_guard<std::mutex> guard(mtx);
-//             int line_counter = ++counter;
-//             if (line_counter > num_lines) break;
-//             ofs << "This is some text for your pleasure" << line_counter << endl;
-//         }
-//     });
-//     for (auto &t : threads)
-//         if (t.joinable())
-//             t.join();
-
-//     EXPECT_TRUE(true);
-//     LOG_CONFIG_TIMESTAMP(true);
-//     LOG_CONFIG_FORCE_FLUSH(true);
-// }
